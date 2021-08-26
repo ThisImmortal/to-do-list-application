@@ -1,13 +1,10 @@
 package com.spring.security.demo.app.service;
 
-import com.sun.xml.internal.org.jvnet.mimepull.MIMEMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-
 import javax.mail.MessagingException;
-import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 
 @Service

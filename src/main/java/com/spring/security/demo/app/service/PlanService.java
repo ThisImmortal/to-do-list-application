@@ -1,7 +1,6 @@
 package com.spring.security.demo.app.service;
 
 import com.spring.security.demo.app.model.PlanToDo;
-import com.spring.security.demo.app.model.User;
 import com.spring.security.demo.app.repository.PlanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

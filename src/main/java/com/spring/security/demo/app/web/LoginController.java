@@ -1,7 +1,6 @@
 package com.spring.security.demo.app.web;
 
 
-import com.spring.security.demo.app.model.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;

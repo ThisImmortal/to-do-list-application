@@ -1,7 +1,5 @@
 package com.spring.security.demo.app.model.validation;
 
-import org.hibernate.annotations.Type;
-
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.*;
