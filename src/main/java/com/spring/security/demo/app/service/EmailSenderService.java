@@ -20,7 +20,7 @@ public class EmailSenderService {
 
         mimeMessageHelper.setFrom("socialnetworkalternative@gmail.com");
         mimeMessageHelper.setTo(toEmail);
-        mimeMessageHelper.setText("Click this verification link to activate your account : "+" http://localhost:8095/register/activate-account?key1="+toEmail+"&key2="+hashcode);
+        mimeMessageHelper.setText("Click this verification link to activate your account : "+" http://spring-boot-todo-demo.herokuapp.com/register/activate-account?key1="+toEmail+"&key2="+hashcode);
         mimeMessageHelper.setSubject("Congratulations! You registered succesfully.");
 
         mailSender.send(mimeMessage);
