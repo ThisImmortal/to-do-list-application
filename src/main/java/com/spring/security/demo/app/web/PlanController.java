@@ -29,7 +29,7 @@ public class PlanController {
 
     @InitBinder
     protected void initBinder(WebDataBinder initBinder){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         initBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
     }
 

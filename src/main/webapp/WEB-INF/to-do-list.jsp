@@ -3,25 +3,30 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>List Todos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="webjars/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
 <jsp:useBean id="now" class="java.util.Date"/>
-<fmt:formatDate value="${now}" pattern="dd/MM/yyyy"/>
+
 <nav class="navbar navbar-dark bg-dark">
     <a class="navbar-brand" href="#">
-        <img src="../img/logo.png" width="50" height="40" class="d-inline-block align-top" alt="">
-        Bootstrap
+        <img src="../img/img-logo.png" width="50" height="40" class="d-inline-block align-top" alt="">
+        MyTodos App
     </a>
     <div>
         <h1 style="color: white">Welcome, ${firstName}</h1>
     </div>
 
 </nav>
-
-<div class="container">
+<br>
+<br>
+<br>
+<div class="container-fluid">
     <!-- Image and text -->
 
     <h1>Your Plans:</h1>
@@ -41,8 +46,8 @@
         <c:forEach items="${todolist}" var="todo">
             <tr>
                 <td>${todo.description}</td>
-                <td><fmt:formatDate value="${todo.beginDate}" pattern="dd/mm/yyyy"/></td>
-                <td><fmt:formatDate value="${todo.endDate}" pattern="dd/mm/yyyy"/></td>
+                <td><fmt:formatDate value="${todo.beginDate}" pattern="dd-MM-yyyy"/></td>
+                <td><fmt:formatDate value="${todo.endDate}" pattern="dd-MM-yyyy"/></td>
                 <c:choose>
                     <c:when test="${now lt todo.endDate && now ge todo.beginDate}">
                         <td style="color: green;">Already in process</td>
@@ -54,7 +59,7 @@
                         <td style="color: orange;">Waiting the beginning date.</td>
                     </c:otherwise>
                 </c:choose>
-                <td><a type="button" class="btn btn-success" href="/update-todo?id=${todo.id}">Update</a>
+                <td class=""><a type="button" class="btn btn-success" href="/update-todo?id=${todo.id}">Update</a>
                     <a type="button" class="btn btn-warning" href="/delete-todo?id=${todo.id}">Delete</a></td>
             </tr>
         </c:forEach>
@@ -62,12 +67,16 @@
 
     </table>
 
+    <br>
+    <br>
     <div><a href="/add-todo">Add new ToDo</a></div>
     <div><a href="/user-logout">Log out</a></div>
 </div>
 
 <script src="webjars/jquery/1.9.1/jquery.min.js"></script>
 <script src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+<jsp:include page="includes/footer-copyright.jsp"/>
 </body>
 
 </html>
