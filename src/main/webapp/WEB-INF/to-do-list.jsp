@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,7 +71,13 @@
     <br>
     <br>
     <div><a href="/add-todo">Add new ToDo</a></div>
-    <div><a href="/user-logout">Log out</a></div>
+    <div>
+        <form:form action="${pageContext.request.contextPath}/logout" method="POST">
+
+            <input type="submit" value="Logout"/>
+
+        </form:form>
+    </div>
 </div>
 
 <script src="webjars/jquery/1.9.1/jquery.min.js"></script>

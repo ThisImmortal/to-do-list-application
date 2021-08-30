@@ -10,11 +10,6 @@ public class PasswordsValueMatchValidator implements ConstraintValidator<Passwor
 
 
     @Override
-    public void initialize(PasswordsValueMatch constraintAnnotation) {
-
-    }
-
-    @Override
     public boolean isValid(Object value, ConstraintValidatorContext context) {
 
         UserRegistrationDto userRegistrationDto = (UserRegistrationDto) value;

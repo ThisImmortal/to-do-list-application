@@ -54,9 +54,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 and().
                 formLogin().loginPage("/show-login-page").loginProcessingUrl("/login").
                 permitAll().
-                and().logout().logoutUrl("/user-logout").
-                logoutSuccessUrl("/show-login-page").invalidateHttpSession(true).
-                clearAuthentication(true);
+                and().logout().logoutUrl("/logout").logoutSuccessUrl("/show-login-page").
+                invalidateHttpSession(true).and().csrf().disable();
+
+
 
 
 //        http.logout().logoutUrl("/user-logout").logoutSuccessUrl("/show-login-page").

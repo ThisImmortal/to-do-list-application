@@ -30,7 +30,26 @@
                     <div class="card-body">
                         <div class="m-sm-4">
                             <form:form method="post" modelAttribute="user">
-                                <form:errors path="passwordMatching" cssClass="alert alert-danger col-xs-offset-1 col-xs-10"/>
+
+                         <%-- Place for error messages--%>
+                                <div class="form-group">
+                                    <div class="col-xs-15">
+
+                                        <form:errors path="firstName"
+                                                     cssClass="alert alert-danger col-xs-offset-1 col-xs-10" />
+                                        <br>
+                                        <form:errors path="email"
+                                                     cssClass="alert alert-danger col-xs-offset-1 col-xs-12" />
+                                        <br>
+                                        <form:errors path="password"
+                                                     cssClass="alert alert-danger col-xs-offset-1 col-xs-10" />
+                                        <br>
+                                        <form:errors path="passwordMatching"
+                                                     cssClass="alert alert-danger col-xs-offset-1 col-xs-10" />
+                                        <br>
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label>First Name*</label>
                                     <form:input class="form-control form-control-lg" type="text" path="firstName" placeholder="Enter your name"/>

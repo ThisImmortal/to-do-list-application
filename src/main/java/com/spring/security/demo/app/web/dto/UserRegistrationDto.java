@@ -1,12 +1,18 @@
 package com.spring.security.demo.app.web.dto;
 
 import com.spring.security.demo.app.model.validation.PasswordsValueMatch;
+import com.spring.security.demo.app.model.validation.ValidEmailSyntax;
+
+import javax.validation.constraints.NotNull;
 
 @PasswordsValueMatch
 public class UserRegistrationDto {
 
+    @NotNull(message = "First name can not be empty!")
     private String firstName;
     private String lastName;
+
+    @ValidEmailSyntax
     private String email;
     private String password;
     private String passwordMatching;
@@ -61,4 +67,6 @@ public class UserRegistrationDto {
     public String getPasswordMatching() { return passwordMatching; }
 
     public void setPasswordMatching(String passwordMatching) { this.passwordMatching = passwordMatching; }
+
+
 }

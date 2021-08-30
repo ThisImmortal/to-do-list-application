@@ -42,7 +42,7 @@ public class RegisterController {
     }
 
     @PostMapping
-    public String registerUserAccount(@Valid UserRegistrationDto userRegistrationDto,
+    public String registerUserAccount(@ModelAttribute("user") @Valid UserRegistrationDto userRegistrationDto,
                                       BindingResult result){
 
         if (result.hasErrors()){

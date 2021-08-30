@@ -27,21 +27,21 @@
                             <div class="p-5">
                                 <div class="mb-5">
                                     <h3 class="h4 font-weight-bold text-theme">Login</h3>
-                                    <c:if test="${param.logout != null}">
-                                        <div class="alert alert-success col-xs-offset-1 col-xs-10">
-                                            <i>You have been logged out.</i>
-                                        </div>
-                                    </c:if>
                                 </div>
 
                                 <p class="text-muted mt-2 mb-5">Sign in to your account</p>
 
                                 <form:form action="/login" method="post">
+                                    <c:if test="${logout != null}">
+                                        <div class="alert alert-success col-xs-offset-1 col-xs-10">
+                                            <i>You have been logged out.</i>
+                                        </div>
+                                    </c:if>
+
                                     <c:if test="${param.error != null}">
                                         <div class="alert alert-danger col-xs-offset-1 col-xs-10">
                                             <i>Sorry, you entered invalid username or password!</i>
                                         </div>
-
                                     </c:if>
 
                                     <div class="form-group">
@@ -53,11 +53,13 @@
                                         <input type="password" class="form-control" id="password" name="password">
                                     </div>
 
-                                    <button type="submit" class="btn btn-theme">Login</button>
-                                    <a href="#l" class="forgot-link float-right text-primary">Forgot password?</a>
                                     <input type="hidden"
                                            name="${_csrf.parameterName}"
                                            value="${_csrf.token}"/>
+
+                                    <button type="submit" class="btn btn-theme">Login</button>
+                                    <a href="#l" class="forgot-link float-right text-primary">Forgot password?</a>
+
                                 </form:form>
                             </div>
                         </div>
@@ -66,8 +68,8 @@
                             <div class="account-block rounded-right">
                                 <div class="overlay rounded-right"></div>
                                 <div class="account-testimonial">
-                                    <h4 class="text-white mb-4">This  beautiful theme yours!</h4>
-                                    <p class="lead text-white">"Best investment i made for a long time. Can only recommend it for other users."</p>
+                                    <h4 class="text-white mb-4">MyTodos Management App!</h4>
+                                    <p class="lead text-white">"Manage your plans by recording it"</p>
                                     <p>- Admin User</p>
                                 </div>
                             </div>

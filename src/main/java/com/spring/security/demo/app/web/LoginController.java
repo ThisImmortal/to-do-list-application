@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @Controller
-@SessionAttributes("email")
 public class LoginController {
 
 
@@ -29,15 +28,15 @@ public class LoginController {
 //    }
 
 
-    @RequestMapping(value = "/user-logout", method = RequestMethod.GET)
-    public String logoutUser(HttpServletRequest request, HttpServletResponse response){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if(authentication != null){
-            new SecurityContextLogoutHandler().logout(request, response, authentication);
-        }
-
-        return "custom-login-page";
-    }
+//    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+//    public String logoutUser(HttpServletRequest request, HttpServletResponse response){
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        if(authentication != null){
+//            new SecurityContextLogoutHandler().logout(request, response, authentication);
+//        }
+//
+//        return "custom-login-page";
+//    }
 
 
 }
