@@ -17,6 +17,7 @@
 
 <body>
 
+
 <div id="main-wrapper" class="container">
     <div class="row justify-content-center">
         <div class="col-xl-10">
@@ -39,7 +40,7 @@
                                     </c:if>
 
                                     <c:if test="${param.error != null}">
-                                        <div class="alert alert-danger col-xs-offset-1 col-xs-10">
+                                        <div class="alert alert-danger col-xs-offset-1 col-xs-12">
                                             <i>Sorry, you entered invalid username or password!</i>
                                         </div>
                                     </c:if>

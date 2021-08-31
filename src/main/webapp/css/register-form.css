@@ -1,22 +1,37 @@
+
 body{
-    margin-top:20px;
-    background-color: #f2f3f8;
-}
-.card {
-    margin-bottom: 1.5rem;
-    box-shadow: 0 1px 15px 1px rgba(52,40,104,.08);
+    background-color: beige;
 }
 
-.card {
-    position: relative;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid #e5e9f2;
-    border-radius: .2rem;
+.alert{
+    display: inline;
+    width: 40%;
+    margin-left: 40px;
+    margin-top: 12px;
+    height: 39px;
+    padding: 5px;
+    text-align: center;
+}
+
+.confirm-password-label {
+
+    text-align: right;
+    clear: both;
+    float:left;
+    margin-right:15px;
+}
+
+.other-input-label{
+    text-align: right;
+    clear: both;
+    float:left;
+    margin-right:70px;
+}
+
+button{
+    margin-left: 200px;
+}
+
+p{
+    margin-left: 200px;
 }

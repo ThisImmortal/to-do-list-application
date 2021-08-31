@@ -3,17 +3,20 @@ package com.spring.security.demo.app.web.dto;
 import com.spring.security.demo.app.model.validation.PasswordsValueMatch;
 import com.spring.security.demo.app.model.validation.ValidEmailSyntax;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @PasswordsValueMatch
 public class UserRegistrationDto {
 
-    @NotNull(message = "First name can not be empty!")
+    @NotEmpty(message = "First name can not be empty")
     private String firstName;
     private String lastName;
 
     @ValidEmailSyntax
     private String email;
+
+    @Size(min = 5, message = "Password should be min 5 symbols")
     private String password;
     private String passwordMatching;
 

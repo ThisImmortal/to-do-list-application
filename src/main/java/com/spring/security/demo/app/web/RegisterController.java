@@ -1,5 +1,6 @@
 package com.spring.security.demo.app.web;
 
+import com.spring.security.demo.app.model.User;
 import com.spring.security.demo.app.service.EmailSenderService;
 import com.spring.security.demo.app.service.UserService;
 import com.spring.security.demo.app.web.dto.UserRegistrationDto;
@@ -7,6 +8,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import javax.mail.MessagingException;
@@ -38,15 +40,21 @@ public class RegisterController {
 
        model.addAttribute("user", new UserRegistrationDto());
 
-        return "register-form";
+        return "registration-form";
     }
 
     @PostMapping
     public String registerUserAccount(@ModelAttribute("user") @Valid UserRegistrationDto userRegistrationDto,
-                                      BindingResult result){
+                                      BindingResult result, ModelMap modelMap){
 
         if (result.hasErrors()){
-            return "register-form";
+            return "registration-form";
+        }
+
+        User user = userService.getUserByEmail(userRegistrationDto.getEmail());
+        if(user != null){
+            modelMap.put("emailIsNotValidErrorMessage", "Such email has already registered");
+            return "registration-form";
         }
 
         //Generating registration hashcode for email verification
