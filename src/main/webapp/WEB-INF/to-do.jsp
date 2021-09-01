@@ -10,7 +10,7 @@
     <link href="webjars/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.css" rel="stylesheet">
 </head>
 
-<body>
+<body style="background-color: beige">
 
 <br>
 <br>
@@ -19,18 +19,18 @@
         <form:hidden path="id"/>
         <fieldset class="form-group">
             <form:label path="description">Description</form:label>
-            <form:input path="description" type="text" name="description" class="form-control"/>
+            <form:input path="description" type="text" name="description" class="form-control col-md-4"/>
             <form:errors path="description" cssClass="text-warning"/>
         </fieldset>
         <fieldset class="form-group">
-            <form:label path="description">Begin Date</form:label>
-            <form:input path="beginDate" type="text" name="beginDate" id="bday" class="form-control"/>
-            <form:errors path="beginDate" cssClass="text-warning"/>
+            <form:label path="description" for="bday">Begin Date</form:label>
+            <form:input path="beginDate" type="text" name="beginDate" id="bday" class="form-control col-md-4"/>
+            <form:errors path="beginDate" cssClass="alert alert-danger"/>
         </fieldset>
         <fieldset class="form-group">
-            <form:label path="description">End Date</form:label>
-            <form:input path="endDate" type="text" name="endDate" id="eday" class="form-control"/>
-            <form:errors path="endDate" cssClass="text-warning"/>
+            <form:label path="description" for="eday">End Date</form:label>
+            <form:input path="endDate" type="text" name="endDate" id="eday" class="form-control col-md-4"/>
+            <form:errors path="endDate" cssClass="alert alert-danger"/>
         </fieldset>
         <button type="submit" class="btn btn-success">Add</button>
         <a href="/" type="button" class="btn btn-warning">Back</a>

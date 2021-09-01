@@ -68,18 +68,18 @@ public class PlanController {
         return "to-do";
     }
 
-//    @RequestMapping(value = "/update-todo", method = RequestMethod.POST)
-//    public String updatePlan(@ModelAttribute("planToDo") @Valid PlanToDo planToDo, BindingResult result,
-//                              ModelMap modelMap){
-//        if(result.hasErrors()){
-//            return "to-do";
-//        }
-//        User user = getUser();
-//        planToDo.setUser(user);
-//        planService.savePlan(planToDo);
-//
-//        return "redirect:/";
-//    }
+    @RequestMapping(value = "/update-todo", method = RequestMethod.POST)
+    public String updatePlan(@AuthenticationPrincipal UserPrincipal principal, @ModelAttribute("planToDo") @Valid PlanToDo planToDo, BindingResult result,
+                              ModelMap modelMap){
+        if(result.hasErrors()){
+            return "to-do";
+        }
+        User user = userService.getUserByEmail(principal.getUsername());
+        planToDo.setUser(user);
+        planService.savePlan(planToDo);
+
+        return "redirect:/";
+    }
 
     @RequestMapping(value = "/delete-todo", method = RequestMethod.GET)
     public String deletePlan(@RequestParam("id") int id){

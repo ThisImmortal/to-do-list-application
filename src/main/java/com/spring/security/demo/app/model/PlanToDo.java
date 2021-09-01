@@ -1,10 +1,13 @@
 package com.spring.security.demo.app.model;
 
+import com.spring.security.demo.app.model.validation.ValidPlanDates;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
+@ValidPlanDates
 public class PlanToDo {
 
     @Id
@@ -72,4 +75,6 @@ public class PlanToDo {
     public void setUser(User user) {
         this.user = user;
     }
+
+
 }
