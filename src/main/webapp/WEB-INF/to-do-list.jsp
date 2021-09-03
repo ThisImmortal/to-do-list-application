@@ -146,6 +146,33 @@
 <script src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
 <jsp:include page="includes/footer-copyright.jsp"/>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Used Technologies:</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li>Java 8</li>
+                    <li>Spring Boot</li>
+                    <li>Spring MVC</li>
+                    <li>Spring Security</li>
+                    <li>Spring Data JPA</li>
+                    <li>MySQL</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 
 </html>

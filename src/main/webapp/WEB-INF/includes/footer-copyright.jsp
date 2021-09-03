@@ -15,6 +15,10 @@
            role="button" target="_blank"
         ><i class="fa fa-github"></i
         ></a>
+
+       --- <a href="" data-toggle="modal" data-target="#exampleModalLong">About Project</a>
     </div>
+
+
     <!-- Copyright -->
 </footer>

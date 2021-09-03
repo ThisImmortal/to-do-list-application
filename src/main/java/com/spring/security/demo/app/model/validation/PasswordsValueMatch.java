@@ -11,8 +11,20 @@ import java.lang.annotation.*;
 @Documented
 public @interface PasswordsValueMatch {
 
-    String message() default "Passwords don't match";
+    String message() default "The passwords must match";
 
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
+
+    String first();
+
+    String second();
+
+
+    @Target({ElementType.TYPE, ElementType.ANNOTATION_TYPE})
+    @Retention(RetentionPolicy.RUNTIME)
+    @Documented
+    @interface List{
+        PasswordsValueMatch[] value();
+    }
 }

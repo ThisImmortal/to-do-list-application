@@ -84,8 +84,6 @@
 
             <p class="text-muted text-center mt-3 mb-0">Don't have an account? <a href="/register" class="text-primary ml-1">register</a></p>
 
-            <!-- end row -->
-
         </div>
         <!-- end col -->
     </div>

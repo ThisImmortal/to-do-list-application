@@ -4,9 +4,11 @@ import com.spring.security.demo.app.model.validation.PasswordsValueMatch;
 import com.spring.security.demo.app.model.validation.ValidEmailSyntax;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@PasswordsValueMatch
+@PasswordsValueMatch(first = "password", second = "passwordMatching", message = "The password fields must match")
+
 public class UserRegistrationDto {
 
     @NotEmpty(message = "First name can not be empty")
@@ -16,8 +18,11 @@ public class UserRegistrationDto {
     @ValidEmailSyntax
     private String email;
 
-    @Size(min = 5, message = "Password should be min 5 symbols")
+
+    @Size(min = 8, max = 25, message = "Password must be min 8 max 25 symbols")
+    @NotEmpty(message = "Password can not be empty")
     private String password;
+
     private String passwordMatching;
 
 

@@ -1,0 +1,40 @@
+.alert{
+    margin-left: 40px;
+    margin-top: 12px;
+    padding: 5px;
+    text-align: center;
+
+
+}
+
+.description-label{
+    text-align: right;
+    clear: both;
+    float:left;
+    margin-right:50px;
+}
+
+.begin-date-label{
+    margin-right: 53px;
+
+
+}
+
+.end-date-label{
+    margin-right: 66px;
+
+}
+
+ button{
+    margin-left: 381px;
+}
+
+ fieldset{
+     margin-left: 300px;
+     /*margin-top: 25px;*/
+ }
+
+ form{
+     margin-top: 70px;
+
+ }

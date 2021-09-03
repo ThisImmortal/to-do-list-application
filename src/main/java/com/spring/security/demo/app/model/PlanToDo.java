@@ -3,11 +3,11 @@ package com.spring.security.demo.app.model;
 import com.spring.security.demo.app.model.validation.ValidPlanDates;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Date;
 
 @Entity
-@ValidPlanDates
+@ValidPlanDates(first = "beginDate", second = "endDate", message = "Invalid date order")
 public class PlanToDo {
 
     @Id
@@ -16,8 +16,13 @@ public class PlanToDo {
 
     @Size(min = 10, message = "Enter at least 10 characters")
     @Size(max = 77, message = "You can write maximum 77 characters")
+    @NotNull(message = "Enter at least 10 characters")
     private String description;
+
+    @NotNull(message = "Begin date can not be empty")
     private Date beginDate;
+
+    @NotNull(message = "End date can not be empty")
     private Date endDate;
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,

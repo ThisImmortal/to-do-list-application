@@ -7,6 +7,7 @@ import com.spring.security.demo.app.service.PlanService;
 import com.spring.security.demo.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -29,8 +30,13 @@ public class PlanController {
 
     @InitBinder
     protected void initBinder(WebDataBinder initBinder){
+
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        initBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+        dateFormat.setLenient(false);
+        initBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+
+        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+        initBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
 
     @RequestMapping(value = "/add-todo", method = RequestMethod.GET)

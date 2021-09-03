@@ -6,14 +6,19 @@ import com.spring.security.demo.app.service.UserService;
 import com.spring.security.demo.app.web.dto.UserRegistrationDto;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 
 @Controller
@@ -28,6 +33,13 @@ public class RegisterController {
     public RegisterController(UserService userService){
         super();
         this.userService = userService;
+    }
+
+    @InitBinder
+    protected void initBinder(WebDataBinder initBinder){
+
+        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+        initBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
 
     @ModelAttribute("user")

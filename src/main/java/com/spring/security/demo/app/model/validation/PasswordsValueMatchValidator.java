@@ -1,19 +1,51 @@
 package com.spring.security.demo.app.model.validation;
 
 import com.spring.security.demo.app.web.dto.UserRegistrationDto;
+import org.apache.commons.beanutils.BeanUtils;
 
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class PasswordsValueMatchValidator implements ConstraintValidator<PasswordsValueMatch, Object> {
+public class PasswordsValueMatchValidator implements ConstraintValidator<PasswordsValueMatch, UserRegistrationDto> {
 
+
+    private String firstFieldName;
+    private String secondFieldName;
+    private String message;
 
     @Override
-    public boolean isValid(Object value, ConstraintValidatorContext context) {
+    public void initialize(final PasswordsValueMatch constraintAnnotation) {
 
-        UserRegistrationDto userRegistrationDto = (UserRegistrationDto) value;
-        return userRegistrationDto.getPassword().equals(userRegistrationDto.getPasswordMatching());
+        firstFieldName = constraintAnnotation.first();
+        secondFieldName = constraintAnnotation.second();
+        message = constraintAnnotation.message();
+
+    }
+
+    @Override
+    public boolean isValid(final UserRegistrationDto value, final ConstraintValidatorContext context) {
+
+        boolean valid = true;
+        try {
+
+            final Object firstObj = BeanUtils.getProperty(value, firstFieldName);
+            final Object secondObj = BeanUtils.getProperty(value, secondFieldName);
+
+            valid =  firstObj == null && secondObj == null || firstObj != null && firstObj.equals(secondObj);
+
+
+        }
+        catch (final Exception e){
+            System.out.println(e.toString());
+        }
+
+        if(!valid){
+
+            context.buildConstraintViolationWithTemplate(message).addPropertyNode(secondFieldName).
+                    addConstraintViolation().disableDefaultConstraintViolation();
+        }
+        return valid;
 
     }
 }
