@@ -6,7 +6,7 @@
     <title>Plan Form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="webjars/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="webjars/bootstrap/5.0.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="webjars/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.css" rel="stylesheet">
     <link href="../css/to-do.css" rel="stylesheet">
 </head>

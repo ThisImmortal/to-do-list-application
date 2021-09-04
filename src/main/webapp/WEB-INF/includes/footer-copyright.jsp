@@ -16,7 +16,7 @@
         ><i class="fa fa-github"></i
         ></a>
 
-       --- <a href="" data-toggle="modal" data-target="#exampleModalLong">About Project</a>
+       --- <a href="" data-bs-toggle="modal" data-bs-target="#exampleModalLong">About Project</a>
     </div>
 
 

@@ -52,7 +52,7 @@ public class RegisterController {
 
        model.addAttribute("user", new UserRegistrationDto());
 
-        return "registration-form";
+        return "new-register-form";
     }
 
     @PostMapping
@@ -60,13 +60,13 @@ public class RegisterController {
                                       BindingResult result, ModelMap modelMap){
 
         if (result.hasErrors()){
-            return "registration-form";
+            return "new-register-form";
         }
 
         User user = userService.getUserByEmail(userRegistrationDto.getEmail());
         if(user != null){
             modelMap.put("emailIsNotValidErrorMessage", "Such email has already registered");
-            return "registration-form";
+            return "new-register-form";
         }
 
         //Generating registration hashcode for email verification
