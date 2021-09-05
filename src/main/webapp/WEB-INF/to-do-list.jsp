@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -12,7 +12,7 @@
     <link href="../css/to-do-list.css" rel="stylesheet">
 </head>
 
-<body>
+<body style="background-color: beige">
 <jsp:useBean id="now" class="java.util.Date"/>
 
 <nav class="navbar navbar-dark bg-dark">
@@ -36,24 +36,8 @@
     </div>
 
     <!-- Log out confirmation Modal -->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="LogoutModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="LogoutModalLabel">Log out confirmation</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h4>Are you sure to log out?</h4>
-                </div>
-                <div class="modal-footer">
-                    <a href="${pageContext.request.contextPath}/logout"><button type="button" class="btn btn-primary">Yes</button></a>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <jsp:include page="includes/logout-confirm-modal.jsp"/>
+
 
 </nav>
 <br>
@@ -64,18 +48,16 @@
     <c:when test="${empty todolist}">
         <div class="add-icon">
             <a href="/add-todo">
-            <button type="submit" class="btn btn-primary btn-lg" data-bs-target="#staticBackdrop"
-                    data-bs-toggle="modal">
-                <i class="fa fa-plus"></i> Add your first ToDo
-            </button>
+                <button type="submit" class="btn btn-primary btn-lg">
+                    <i class="fa fa-plus"></i> Add your first ToDo
+                </button>
             </a>
         </div>
-        <jsp:include page="includes/add-plan-modal.jsp"/>
     </c:when>
 
     <c:otherwise>
     <h1>Your Plans:</h1>
-    <table class="table table-striped table-bordered table-hover">
+    <table class="table table-striped table-bordered table-hover ">
 
         <thead class="thead-dark">
         <tr>
@@ -105,27 +87,12 @@
                     </c:otherwise>
                 </c:choose>
                 <td><a type="button" class="btn btn-success" href="/update-todo?id=${todo.id}">Update</a>
-                    <a type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#DeleteModal" href="/delete-todo?id=${todo.id}">Delete</a></td>
+                    <a type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteModal" href="/delete-todo?id=${todo.id}">Delete</a></td>
 
-<%--                <!-- Delete confirmation Modal --%>
-                <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="DeleteModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="DeleteModalLabel">Delete confirmation</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <h4>Are you sure to delete </h4>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="/delete-todo?id=${todo.id}"><button type="button" class="btn btn-primary">Yes</button></a>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              <!-- Delete confirmation Modal -->
+              <jsp:include page="includes/delete-confirm-modal.jsp"/>
+
+
 
             </tr>
         </c:forEach>
@@ -133,10 +100,11 @@
 
     </table>
 
-            <button type="submit" class="btn btn-primary btn-lg fixed-bottom" data-bs-toggle="modal"
-                    data-bs-target="#addTodoModal" style="margin-bottom: 70px; margin-left: 15px;">
+        <a href="/add-todo">
+            <button type="submit" class="btn btn-primary btn-lg fixed-bottom" style="margin-bottom: 70px; margin-left: 15px;">
                 <i class="fa fa-plus"></i> Add new ToDo
             </button>
+        </a>
 
     </c:otherwise>
 
@@ -147,56 +115,12 @@
 <script src="webjars/jquery/1.9.1/jquery.min.js"></script>
 <script src="webjars/bootstrap/5.0.1/js/bootstrap.min.js"></script>
 
+<!--Footer include-->
 <jsp:include page="includes/footer-copyright.jsp"/>
-
-<!-- Modal for Adding new Plan-->
-<div class="modal fade" id="addTodoModal" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="ModalTittle">
-    <div class="modal-dialog modal-lg role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="ModalTittle">Registration Form</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                </button>
-            </div>
-
-            <div class="modal-body">
-           Modal body
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ok</button>
-            </div>
-
-        </div>
-
-    </div>
-</div>
 
 
 <!-- Modal for About project link-->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Used Technologies:</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                </button>
-            </div>
-            <div class="modal-body">
-                <ul>
-                    <li>Java 8</li>
-                    <li>Spring Boot</li>
-                    <li>Spring MVC</li>
-                    <li>Spring Security</li>
-                    <li>Spring Data JPA</li>
-                    <li>MySQL</li>
-                </ul>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ok</button>
-            </div>
-        </div>
-    </div>
-</div>
+<jsp:include page="includes/about-project-modal.jsp"/>
 </body>
 
 </html>

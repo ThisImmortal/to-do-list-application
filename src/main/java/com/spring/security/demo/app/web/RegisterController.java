@@ -82,7 +82,7 @@ public class RegisterController {
         }
 
 
-        return "custom-login-page";
+        return "register-success-page";
     }
 
     @GetMapping("/activate-account")

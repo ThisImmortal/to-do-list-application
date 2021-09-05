@@ -44,7 +44,7 @@ public class PlanController {
 
         PlanToDo planToDo = new PlanToDo();
         modelMap.addAttribute("planToDo", planToDo);
-        return "to-do";
+        return "to-do-form";
     }
 
     @RequestMapping(value = "/add-todo", method = RequestMethod.POST)
@@ -52,7 +52,7 @@ public class PlanController {
                           ModelMap modelMap){
 
         if(result.hasErrors()){
-            return "to-do";
+            return "to-do-form";
         }
 
         User user = userService.getUserByEmail(principal.getUsername());
@@ -71,14 +71,14 @@ public class PlanController {
         PlanToDo planToDo = planService.getPlanById(id);
         modelMap.put("planToDo", planToDo);
 
-        return "to-do";
+        return "to-do-form";
     }
 
     @RequestMapping(value = "/update-todo", method = RequestMethod.POST)
     public String updatePlan(@AuthenticationPrincipal UserPrincipal principal, @ModelAttribute("planToDo") @Valid PlanToDo planToDo, BindingResult result,
                               ModelMap modelMap){
         if(result.hasErrors()){
-            return "to-do";
+            return "to-do-form";
         }
         User user = userService.getUserByEmail(principal.getUsername());
         planToDo.setUser(user);
