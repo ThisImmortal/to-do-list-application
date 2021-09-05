@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<div class="jumbotron text-center">
+<div class="text-center">
     <h1 class="display-3">Thank You!</h1>
     <p class="lead"><strong>Please check your email</strong> We sent you a confirmation email with verification link.</p>
     <hr>
