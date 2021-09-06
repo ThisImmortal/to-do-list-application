@@ -46,6 +46,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(
                  "/register**",
                             "/register/**",
+                            "/forgot-password**",
+                            "/forgot-password/**",
                             "/webjars/**",
                             "/css/**",
                             "/img/**",

@@ -27,4 +27,19 @@ public class EmailSenderService {
 
         System.out.println("Email sent...");
     }
+
+    public void sendForgotPasswordEmail(String toEmail, String hashcode) throws MessagingException {
+
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+
+        mimeMessageHelper.setFrom("socialnetworkalternative@gmail.com");
+        mimeMessageHelper.setTo(toEmail);
+        mimeMessageHelper.setText("Click this link to reset your password : "+" http://spring-boot-todo-demo.herokuapp.com/register/activate-account?key1="+toEmail+"&key2="+hashcode);
+        mimeMessageHelper.setSubject("This is password reset email.");
+
+        mailSender.send(mimeMessage);
+
+        System.out.println("Email sent...");
+    }
 }

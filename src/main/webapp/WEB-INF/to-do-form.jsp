@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>New Todo Form</title>
+    <title>Todo Form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="webjars/bootstrap/5.0.1/css/bootstrap.min.css" rel="stylesheet">
@@ -25,7 +25,7 @@
                 <div class="card font-weight-bold">
                     <div class="card-body">
                         <div class="card-title">
-                            <h2 class="h4 fw-bold text-center">New Todo Form</h2>
+                            <h2 class="h4 fw-bold text-center">Todo Form</h2>
                         </div>
                         <div class="m-sm-5">
                             <form:form method="post" modelAttribute="planToDo">

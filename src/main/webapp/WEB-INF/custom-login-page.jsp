@@ -55,7 +55,7 @@
                                            value="${_csrf.token}"/>
 
                                     <button type="submit" class="btn btn-theme">Login</button>
-                                    <a href="#l" class="forgot-link float-right text-primary">Forgot password?</a>
+                                    <a href="/forgot-password" class="forgot-link float-right text-primary">Forgot password?</a>
 
                                 </form:form>
                             </div>
