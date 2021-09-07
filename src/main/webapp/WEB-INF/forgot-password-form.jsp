@@ -39,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer"> <button class="btn btn-primary" type="submit">Get New Password</button> <a href="/show-login-page" class="btn btn-dark">Back to Login</a></div>
+                <div class="card-footer"> <button class="btn btn-primary btn-lg" type="submit">Get New Password</button> <a href="/show-login-page" class="btn btn-dark btn-lg">Back to Login</a></div>
             </form>
         </div>
     </div>

@@ -29,6 +29,11 @@
                                 <p class="text-muted mt-2 mb-5">Sign in to your account</p>
 
                                 <form:form action="/login" method="post">
+                                    <c:if test="${invalidOrExpiredToken != null}">
+                                        <div class="alert alert-success col-xs-offset-1 col-xs-10">
+                                            <i>Your token link expired</i>
+                                        </div>
+                                    </c:if>
                                     <c:if test="${logout != null}">
                                         <div class="alert alert-success col-xs-offset-1 col-xs-10">
                                             <i>You have been logged out.</i>

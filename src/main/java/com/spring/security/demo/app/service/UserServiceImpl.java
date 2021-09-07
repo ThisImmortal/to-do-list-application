@@ -1,8 +1,10 @@
 package com.spring.security.demo.app.service;
 
+import com.spring.security.demo.app.model.PasswordResetToken;
 import com.spring.security.demo.app.model.Role;
 import com.spring.security.demo.app.model.User;
 import com.spring.security.demo.app.model.UserPrincipal;
+import com.spring.security.demo.app.repository.PasswordTokenRepository;
 import com.spring.security.demo.app.repository.UserRepository;
 import com.spring.security.demo.app.web.dto.UserRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,17 +12,18 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Random;
-import java.util.stream.Collectors;
+import java.util.Date;
+
 
 @Service
 public class UserServiceImpl implements UserService{
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PasswordTokenRepository passwordTokenRepository;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -51,6 +54,8 @@ public class UserServiceImpl implements UserService{
         userRepository.activateAccount(email, hashcode);
     }
 
+
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -65,7 +70,17 @@ public class UserServiceImpl implements UserService{
 
     }
 
+
+
 //    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){
 //        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+
+    @Override
+    public void createPasswordResetTokenForUser(User user, String token, Date currentdate) {
+
+        PasswordResetToken myToken = new PasswordResetToken(token, user, currentdate);
+        passwordTokenRepository.save(myToken);
+    }
+
     }
 
