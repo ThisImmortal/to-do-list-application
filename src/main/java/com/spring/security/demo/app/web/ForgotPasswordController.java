@@ -4,23 +4,20 @@ import com.spring.security.demo.app.model.User;
 import com.spring.security.demo.app.service.EmailSenderService;
 import com.spring.security.demo.app.service.ForgotPasswordService;
 import com.spring.security.demo.app.service.UserService;
-import org.apache.commons.codec.digest.DigestUtils;
+import com.spring.security.demo.app.web.dto.PasswordDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Random;
 import java.util.UUID;
 
 @Controller
@@ -43,7 +40,7 @@ public class ForgotPasswordController {
     }
 
     @PostMapping()
-    public String sendForgotPasswordEmail(HttpServletRequest request){
+    public String sendForgotPasswordEmail(HttpServletRequest request, ModelMap modelMap){
 
         String email = request.getParameter("email");
         if (email.equals("")){
@@ -66,7 +63,9 @@ public class ForgotPasswordController {
         try {
             String baseUrl = getAppUrl(request);
             emailSenderService.send(constructResetTokenEmail(baseUrl, request.getLocale(),token, user));
-            return "custom-login-page";
+            modelMap.put("successMessageHeader","Verification Email");
+            modelMap.put("successMessageBody","Please check your email. We sent you a message with password reset link.");
+            return "success-page";
         }
         catch (Exception e){
             System.out.println(e.toString());
@@ -84,8 +83,31 @@ public class ForgotPasswordController {
             model.addAttribute("invalidOrExpiredToken", "Your password reset link expired or invalid token");
             return "forgot-password-expired-token";
         } else {
-            model.addAttribute("token", token);
+            PasswordDto passwordDto = new PasswordDto();
+            passwordDto.setToken(token);
+            model.addAttribute("passwordDto", passwordDto);
+
             return "update-password-form";
+        }
+    }
+
+    @PostMapping("/changePassword")
+    public String saveNewPassword(@Valid @ModelAttribute("passwordDto") PasswordDto passwordDto, BindingResult result,
+                                  ModelMap modelMap){
+
+        if(result.hasErrors()){
+            return "update-password-form";
+        }
+
+        User user = userService.getUserByToken(passwordDto.getToken());
+        if(user != null){
+            userService.changeUserPassword(user, passwordDto.getPassword());
+            modelMap.put("successMessageHeader", "Password changed successfully!");
+            modelMap.put("successMessageBody", "Your new password has been saved succesfully. Click button below to go login page.");
+            return "success-page";
+        }
+        else {
+            return "redirect:/show-login-page";
         }
     }
 

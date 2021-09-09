@@ -82,5 +82,17 @@ public class UserServiceImpl implements UserService{
         passwordTokenRepository.save(myToken);
     }
 
+    @Override
+    public User getUserByToken(String token) {
+
+        return userRepository.getUserByToken(token);
     }
+
+    @Override
+    public void changeUserPassword(User user, String newPassword) {
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
+    }
+
+}
 

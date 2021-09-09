@@ -6,7 +6,6 @@ import com.spring.security.demo.app.service.UserService;
 import com.spring.security.demo.app.web.dto.UserRegistrationDto;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -79,8 +78,10 @@ public class RegisterController {
             e.printStackTrace();
         }
 
+        modelMap.put("successMessageHeader", "Thank You!");
+        modelMap.put("successMessageBody", "Please check your email. We sent you a confirmation email with verification link.");
 
-        return "register-success-page";
+        return "success-page";
     }
 
     @GetMapping("/activate-account")

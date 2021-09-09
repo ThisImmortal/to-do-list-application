@@ -12,4 +12,6 @@ public interface UserService extends UserDetailsService {
     User save(UserRegistrationDto userRegistrationDto, String hashcode);
     void activateAccount(String email, String hashcode);
     public void createPasswordResetTokenForUser(User user, String token, Date currentDate);
+    public User getUserByToken(String token);
+    public void changeUserPassword(User user, String newPassword);
 }

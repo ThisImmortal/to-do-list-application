@@ -15,12 +15,12 @@
 <body>
 
 <div class="text-center">
-    <h1 class="display-3">Thank You!</h1>
-    <p class="lead"><strong>Please check your email</strong> We sent you a confirmation email with verification link.</p>
+    <h1 class="display-3">${successMessageHeader}</h1>
+    <p class="lead">${successMessageBody}</p>
     <hr>
 
     <p class="lead">
-        <a class="btn btn-primary btn-sm" href="/show-login-page" role="button">Continue to homepage</a>
+        <a class="btn btn-primary btn-sm" href="/show-login-page" role="button">Continue to login page</a>
     </p>
 </div>
 </body>

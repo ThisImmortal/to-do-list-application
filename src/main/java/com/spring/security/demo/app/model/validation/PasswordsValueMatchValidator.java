@@ -7,7 +7,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class PasswordsValueMatchValidator implements ConstraintValidator<PasswordsValueMatch, UserRegistrationDto> {
+public class PasswordsValueMatchValidator implements ConstraintValidator<PasswordsValueMatch, Object> {
 
 
     private String firstFieldName;
@@ -24,7 +24,7 @@ public class PasswordsValueMatchValidator implements ConstraintValidator<Passwor
     }
 
     @Override
-    public boolean isValid(final UserRegistrationDto value, final ConstraintValidatorContext context) {
+    public boolean isValid(final Object value, final ConstraintValidatorContext context) {
 
         boolean valid = true;
         try {
