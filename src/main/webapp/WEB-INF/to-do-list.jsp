@@ -28,7 +28,6 @@
             </button>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">Edit profile</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/logout" data-bs-toggle="modal" data-bs-target="#logoutModal"><i class="fa fa-sign-out"></i>Log out</a></li>
             </ul>

@@ -87,6 +87,23 @@
         format: 'yyyy-mm-dd',
     }).val();
 
+    $(document).ready(function(){
+
+        $("#bday").datepicker({
+            todayBtn:  1,
+            autoclose: true,
+        }).on('changeDate', function (selected) {
+            var minDate = new Date(selected.date.valueOf());
+            $('#eday').datepicker('setStartDate', minDate);
+        });
+
+        $("#eday").datepicker()
+            .on('changeDate', function (selected) {
+                var maxDate = new Date(selected.date.valueOf());
+                $('#bday').datepicker('setEndDate', maxDate);
+            });
+
+    });
 </script>
 
 <jsp:include page="includes/footer-copyright.jsp"/>

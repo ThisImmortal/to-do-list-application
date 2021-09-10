@@ -8,3 +8,14 @@
 .table td {
     background-color: white !important;
 }
+
+td {
+    word-wrap: break-word;
+    min-width: 160px;
+    max-width: 160px;
+}
+
+.navbar {
+    width: 1366px;
+
+}
