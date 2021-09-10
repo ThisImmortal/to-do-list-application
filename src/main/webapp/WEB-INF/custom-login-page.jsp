@@ -48,14 +48,17 @@
                                     <div class="form-group mb-5">
                                         <label for="password">Password</label>
                                         <input type="password" class="form-control" id="password" name="password">
+                                        <input type="checkbox" onclick="myFunction()" class="mb-4">Show Password
                                     </div>
 
                                     <input type="hidden"
                                            name="${_csrf.parameterName}"
                                            value="${_csrf.token}"/>
 
-                                    <button type="submit" class="btn btn-theme">Login</button>
+
                                     <a href="/forgot-password" class="forgot-link float-right text-primary">Forgot password?</a>
+
+                                    <button type="submit" class="btn btn-theme">Login</button>
 
                                 </form:form>
                             </div>
@@ -86,6 +89,16 @@
     <!-- Row -->
 </div>
 
+<script>
+    function myFunction() {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
 
 
 </body>

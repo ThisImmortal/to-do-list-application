@@ -54,7 +54,7 @@ public class RegisterController {
 
     @PostMapping
     public String registerUserAccount(@ModelAttribute("user") @Valid UserRegistrationDto userRegistrationDto,
-                                      BindingResult result, ModelMap modelMap){
+                                      BindingResult result, ModelMap modelMap, HttpServletRequest request){
 
         if (result.hasErrors()){
             return "new-register-form";
@@ -72,7 +72,7 @@ public class RegisterController {
         String hashcode = DigestUtils.md2Hex(""+random);
         userService.save(userRegistrationDto, hashcode);
         try {
-            emailSenderService.sendMail(userRegistrationDto.getEmail(), hashcode);
+            emailSenderService.sendMail(userRegistrationDto.getEmail(), hashcode,request);
         }
         catch (MessagingException e){
             e.printStackTrace();

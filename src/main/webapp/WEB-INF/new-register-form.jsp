@@ -53,7 +53,7 @@
         <div class="form-group">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                <form:input type="password" path="password" class="form-control" name="password" placeholder="Password"/>
+                <form:input type="password" path="password" id="password" class="form-control" name="password" placeholder="Password"/>
             </div>
             <div class="my-alert">
                 <form:errors path="password"/>
@@ -65,11 +65,14 @@
 					<i class="fa fa-lock"></i>
 					<i class="fa fa-check"></i>
 				</span>
-                <form:input type="password" path="passwordMatching" class="form-control" name="confirm_password" placeholder="Confirm Password"/>
+                <form:input type="password" path="passwordMatching" id="passwordMatching" class="form-control" name="confirm_password" placeholder="Confirm Password"/>
             </div>
             <div class="my-alert">
                 <form:errors path="passwordMatching"/>
             </div>
+        </div>
+        <div class="text-center">
+            <input type="checkbox" onclick="myFunction()" class="mb-4">Show Password
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block btn-lg">Sign Up</button>
@@ -77,5 +80,19 @@
     </form:form>
     <div class="text-center">Already have an account? <a href="/show-login-page" class="text-primary">Login here</a>.</div>
 </div>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("password");
+        var y = document.getElementById("passwordMatching");
+        if (x.type === "password"||y.type === "password") {
+            x.type = "text";
+            y.type = "text";
+        } else {
+            x.type = "password";
+            y.type = "password";
+        }
+    }
+</script>
 </body>
 </html>

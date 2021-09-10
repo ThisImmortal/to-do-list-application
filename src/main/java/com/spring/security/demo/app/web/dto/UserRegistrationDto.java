@@ -3,8 +3,9 @@ package com.spring.security.demo.app.web.dto;
 import com.spring.security.demo.app.model.validation.PasswordsValueMatch;
 import com.spring.security.demo.app.model.validation.ValidEmailSyntax;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @PasswordsValueMatch(first = "password", second = "passwordMatching", message = "The password fields must match")
@@ -19,9 +20,16 @@ public class UserRegistrationDto {
     private String email;
 
 
+    @NotBlank(message = "Password can not be empty")
     @Size(min = 8, max = 25, message = "Password must be min 8 max 25 symbols")
-    @NotEmpty(message = "Password can not be empty")
+    @Pattern(message = "Password must contain at least one lower case letter", regexp = ".*[a-z].*")
+    @Pattern(message = "Password must contain at least one upper case letter", regexp = ".*[A-Z].*")
+    @Pattern(message = "Password must contain at least one digit", regexp = ".*\\d+.*")
+    @Pattern(message = "Password must contain at least one symbol", regexp = ".*[@#$%^&+=].*")
     private String password;
+//    @Pattern(message = "Password must contain at least: one digit, one lower case and one upper case letter, one symbol and no whitespace",
+//            regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$)$")
+
 
     private String passwordMatching;
 

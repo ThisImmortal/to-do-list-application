@@ -1,9 +1,6 @@
 package com.spring.security.demo.app.model.validation;
 
-import com.spring.security.demo.app.web.dto.UserRegistrationDto;
 import org.apache.commons.beanutils.BeanUtils;
-
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 

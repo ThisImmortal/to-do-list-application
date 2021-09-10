@@ -6,8 +6,11 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Locale;
 
 @Service
@@ -16,14 +19,17 @@ public class EmailSenderService {
     @Autowired
     private JavaMailSender mailSender;
 
-    public void sendMail(String toEmail, String hashcode) throws MessagingException {
+    public void sendMail(String toEmail, String hashcode, HttpServletRequest request) throws MessagingException {
+
+        String baseUrl = ServletUriComponentsBuilder.fromRequestUri(request).replacePath(null).
+                build().toUriString();
 
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
 
         mimeMessageHelper.setFrom("socialnetworkalternative@gmail.com");
         mimeMessageHelper.setTo(toEmail);
-        mimeMessageHelper.setText("Click this verification link to activate your account : "+" http://spring-boot-todo-demo.herokuapp.com/register/activate-account?key1="+toEmail+"&key2="+hashcode);
+        mimeMessageHelper.setText("Click this verification link to activate your account : "+ baseUrl +"/register/activate-account?key1="+toEmail+"&key2="+hashcode);
         mimeMessageHelper.setSubject("Congratulations! You registered succesfully.");
 
         mailSender.send(mimeMessage);
